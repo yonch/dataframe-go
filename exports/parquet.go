@@ -76,7 +76,7 @@ func ExportToParquet(ctx context.Context, w io.Writer, df *dataframe.DataFrame, 
 			tag := fmt.Sprintf(`parquet:"name=%s, type=INT64, repetitiontype=OPTIONAL"`, seriesName)
 			dataSchema.AddField(fieldName, (*int64)(nil), tag)
 		case *dataframe.SeriesTime:
-			tag := fmt.Sprintf(`parquet:"name=%s, type=TIME_MICROS, repetitiontype=OPTIONAL"`, seriesName)
+			tag := fmt.Sprintf(`parquet:"name=%s, type=TIMESTAMP_MICROS, repetitiontype=OPTIONAL"`, seriesName)
 			dataSchema.AddField(fieldName, (*int64)(nil), tag)
 		case *dataframe.SeriesString:
 			tag := fmt.Sprintf(`parquet:"name=%s, type=UTF8, encoding=PLAIN_DICTIONARY, repetitiontype=OPTIONAL"`, seriesName)
