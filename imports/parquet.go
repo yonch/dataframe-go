@@ -138,7 +138,7 @@ func LoadFromParquet(ctx context.Context, src source.ParquetFile, opts ...Parque
 
 			// Check if data is meant to be a time
 			if timeType, ok := goTimeFields[goName]; ok {
-				if timeType == parquet.ConvertedType_TIME_MILLIS {
+				if timeType == parquet.ConvertedType_TIMESTAMP_MILLIS {
 					switch v := val.(type) {
 					case *int64:
 						if v == nil {
@@ -149,7 +149,7 @@ func LoadFromParquet(ctx context.Context, src source.ParquetFile, opts ...Parque
 					case int64:
 						insertVals[name] = time.Unix(0, v*1000000).In(time.UTC)
 					}
-				} else if timeType == parquet.ConvertedType_TIME_MICROS {
+				} else if timeType == parquet.ConvertedType_TIMESTAMP_MICROS {
 					switch v := val.(type) {
 					case *int64:
 						if v == nil {
